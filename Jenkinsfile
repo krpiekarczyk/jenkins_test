@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker { image 'python:3.7.2'}
+    // Run this job within a Docker container built using Dockerfile.build
+    // contained within your projects repository. This image should include
+    // the core runtimes and dependencies required to run the job,
+    // for example Python 3.x and NPM.
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '10')) // Retain history on the last 10 builds
     timestamps() // Append timestamps to each line
@@ -15,8 +21,6 @@ pipeline {
       steps {
         script {
           sh """
-          python3 -m venv .env
-          source ./.env/bin/activate
           pip install -r requirements.txt
           """
         }
@@ -26,7 +30,6 @@ pipeline {
       steps {
         script {
           sh """
-          source ./.env/bin/activate
           python3 -m pytest
           """
         }
