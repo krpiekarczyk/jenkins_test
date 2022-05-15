@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker { image 'python:3.7.2'}
+    docker { image 'python:3.7.2' }
     // Run this job within a Docker container built using Dockerfile.build
     // contained within your projects repository. This image should include
     // the core runtimes and dependencies required to run the job,
