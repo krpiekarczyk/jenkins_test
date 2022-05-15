@@ -24,7 +24,7 @@ pipeline {
       steps {
         script {
           sh """
-          python -m pytest
+          python3 -m pytest
           """
         }
       }
