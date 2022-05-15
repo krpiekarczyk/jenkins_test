@@ -24,7 +24,7 @@ pipeline {
       steps {
         script {
           sh """
-          pytest
+          /usr/local/bin/pytest
           """
         }
       }
