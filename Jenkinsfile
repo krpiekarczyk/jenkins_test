@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Setup') { // Install any dependencies you need to perform testing
       steps {
-        script {
+        withEnv(["HOME=${env.WORKSPACE}"]) {
           sh """
           pip install -r requirements.txt
           """
@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Unit Testing') { // Perform unit testing
       steps {
-        script {
+        withEnv(["HOME=${env.WORKSPACE}"]) {
           sh """
           python3 -m pytest
           """
